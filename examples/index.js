@@ -1,20 +1,17 @@
 const express = require('../index.js')
 const app = express()
-
-app.get(function (req, res, next) {
-  req.user = {
-    name: 'foo'
-  }
-  next()
+app.get('/foo', function (req, res, next) {
+  res.end('Welcome to GET /foo')
 })
 
-app.get(function (req, res, next) {
-  req.article = {
-    title: 'bar'
-  }
-  next()
-}, function (req, res, next) {
-  res.end(`User name is ${req.user.name} and Artitle title is ${req.article.title}`)
+app.get('/bar', function (req, res, next) {
+  res.end('Welcome to GET /bar')
 })
 
+app.post('/foo', function (req, res, next) {
+  res.end('Welcome to POST /foo')
+})
+app.get('/favicon.ico', function (req, res, next) {
+  res.end('Welcome to GET /favicon.ico')
+})
 app.listen(3001)
